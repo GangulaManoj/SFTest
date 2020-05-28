@@ -1,0 +1,28 @@
+<apex:page showHeader="false" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false" docType="html-5.0"  standardController="contact" recordSetVar="contacts">
+    <html  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>SLDS Contacts Visualforce Page in Salesforce Mobile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <apex:slds />
+        </head>
+        <body>
+            <div class="slds-scope">
+                <div class="MyList">
+                    <apex:repeat value="{!contacts}" var="c">
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">Contact Name:</dt>
+                        <dd class="slds-item_detail slds-truncate" title="Description for first label">{!c.Name}</dd>
+                        
+                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">Contact Phone:</dt>
+                        <dd class="slds-item_detail slds-truncate" title="Description for first label">{!c.Phone}</dd>
+  
+                    </dl>
+                        </apex:repeat>
+                </div>
+            </div>
+            
+        </body>
+    </html>
+</apex:page>

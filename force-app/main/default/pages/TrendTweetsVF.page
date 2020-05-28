@@ -1,0 +1,44 @@
+<apex:page controller="TrendTweets">  
+    
+<apex:form >  
+     <apex:pageblock >  
+      <!--  <apex:inputText id="SearchTweet" value="{!queryString}"/>
+          -->
+         <apex:commandButton value="Submit" action="{!submittotwitter}" reRender="Tweets"/>
+        
+          
+           <apex:pageBlockSection id="Tweets">
+       
+
+        <apex:pageBlockTable value="{!Tweets}" var="data">
+            <apex:column headerValue="Created Date" value="{!data.created_Date}"/>
+            <apex:column headerValue="TweetId" value="{!data.TweetId}"/>
+            <apex:column headerValue="Tweet" value="{!data.text}"/>
+            
+                   <apex:column headerValue="User" value="{!data.users.UserName}"/>   
+                     <apex:column headerValue="User Loaction" value="{!data.users.Location}"/>
+                     <apex:column headerValue="Friends Count" value="{!data.users.Frd_count}"/>
+                     <apex:column headerValue="Followers Count" value="{!data.users.Follow_count}"/>
+                
+            
+         </apex:pageBlockTable>
+		<apex:chart height="350" width="450" data="{!pieData}">
+        <apex:pieSeries dataField="Tweets" labelField="text"/>
+        <apex:legend position="right"/>
+    </apex:chart>
+               <apex:chart height="900" width="1500" data="{!pieData}">
+          <apex:axis type="Category" position="left" fields="TQuery"
+            title="Trendz Tweet" grid="true"/>
+          <apex:axis type="Category" position="bottom" fields="NoOfTweets"
+            title="No Of Tweet">
+        </apex:axis>
+        <apex:lineSeries axis="left" fill="true" xField="TQuery" yField="NoOfTweets"
+          markerType="cross" markerSize="4" markerFill="#FF0000"/>
+   </apex:chart>
+
+               </apex:pageBlockSection>
+
+    </apex:pageblock>  
+    
+</apex:form>  
+</apex:page>

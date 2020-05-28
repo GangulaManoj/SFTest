@@ -1,0 +1,26 @@
+<apex:page standardController="Opportunity">
+   <style>
+    .mypage .quote {
+            margin: 12px 0;
+            font-size: 64px;
+            text-align: center;
+        }
+        .mypage .delta {
+            font-size: 24px;
+            text-align: center;
+            color: green;
+        }
+    </style>
+ <div class="mypage">
+        Stage:
+        
+       <apex:outputPanel rendered="{!opportunity.StageName == 'Prospecting'}"> Test Review</apex:outputPanel>
+     
+       <apex:outputPanel rendered="{!opportunity.StageName == 'Needs Analysis'}">Test Review</apex:outputPanel>
+     
+       <apex:outputPanel rendered="{!opportunity.StageName == 'Proposal/Price Quote'}">Test Review</apex:outputPanel>
+     
+       <apex:outputPanel rendered="{!opportunity.StageName == 'Negotiation/Review'}">Test Review</apex:outputPanel>
+     
+    </div>
+</apex:page>

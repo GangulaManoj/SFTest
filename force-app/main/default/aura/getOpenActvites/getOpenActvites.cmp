@@ -1,0 +1,21 @@
+<aura:component controller="OpenActvites" implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" access="global" >
+    <aura:attribute name="OpenActivitiesListData" type="Object"/>
+    <aura:attribute name="OpenActivitiesColumns" type="List"/>
+    <aura:attribute name="OpenActivitiesColumnsNames" type="List"/>
+    
+    
+    
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    
+    <aura:attribute name="AccList" type="Object"/>
+    <aura:attribute name="Acc" type="List"/>
+	
+    
+    
+    <aura:iteration items="{v.AccList}" var="item">
+        <div>
+        {!item.name}
+            {!item.Description}
+        </div>
+    </aura:iteration>
+</aura:component>

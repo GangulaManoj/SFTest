@@ -1,0 +1,16 @@
+<apex:page controller="MergePicklists">
+    <apex:pageBlock >
+    <apex:form >
+<apex:pageBlockSection >
+    
+    <apex:pageBlockSectionItem >
+    <apex:selectList value="{!TestPick}" multiselect="true" size="2" >
+       <apex:selectOptions value="{!options}"/>	
+        
+        </apex:selectList>
+    
+    </apex:pageBlockSectionItem>
+    </apex:pageBlockSection>
+        </apex:form>
+       </apex:pageBlock> 
+</apex:page>

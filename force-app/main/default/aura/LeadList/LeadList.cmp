@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" controller="GetLeadRecords" access="global">
+     <ltng:require styles="{!$Resource.Lightning_slds+'/assets/styles/salesforce-lightning-design-system.css'}"/>
+     <ltng:require styles="{!$Resource.Lightning_slds+'/assets/styles/salesforce-lightning-design-system.min.css'}"/>
+<aura:attribute name="reg" type="Lead[]"/>
+<ui:button label="GetLeadRecords" press="{!c.myAction}"/>
+<aura:iteration var="r" items="{!v.reg}" >
+    <P> <a href="{!'/one/one.app?#/sObject/'+ r.Id + '/view'}" target="_blank">{!r.FirstName }</a></P>
+<p>{!r.FirstName}</p>
+    
+<p>{!r.Status}</p>
+</aura:iteration>
+    <div class="slds-float--left">
+    <ui:button aura:id="NewLead" label="New_Lead" class="slds-button slds-button--brand" press="{!c.navigateToNewLead}"/>
+</div>
+</aura:component>

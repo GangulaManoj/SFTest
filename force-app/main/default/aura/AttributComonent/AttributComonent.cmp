@@ -1,0 +1,4 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="message" type="String"/>
+    <p>Heelo ! {!v.message}</p>
+</aura:component>

@@ -1,0 +1,32 @@
+<apex:page tabStyle="Opportunity" controller="ISOtoCodeService" docType="html-5.0" sidebar="false" showHeader="false" showChat="false">
+    <apex:form >
+        <apex:pageBlock title="Continuation Demo">
+            Country ISO :
+            <apex:input label="Country ISO" value="{!countryISO}"/>
+            <apex:commandButton action="{!requestService}" value="Request Service" reRender="responseBlock"/>
+
+        </apex:pageBlock>
+
+        <apex:pageBlock title="Response from Webservice" id="responseBlock">
+
+<pre> {!response} </pre>
+
+        </apex:pageBlock>
+    </apex:form>
+<style type="text/css">
+        pre{
+         	font-size : 1.7em;
+        }
+    </style>
+<script>
+    window.onbeforeunload = function (evt) {
+        alert(); 
+   var message = '!! Leaving this page may cause loss of data !!\n';
+        //if (typeof evt == 'undefined') evt = window.event;
+        // if (evt) evt.returnValue = message;
+        alert(message);
+   return message; 
+}
+
+    </script>
+</apex:page>

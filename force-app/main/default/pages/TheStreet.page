@@ -1,0 +1,17 @@
+<apex:page controller="TheStreetController">
+   <apex:pageBlock >
+       <apex:form >
+           <apex:selectList size="1" value="{!SelectedValue}"> 
+        <apex:selectOptions value="{!pickval}"/>  
+    </apex:selectList>
+   <apex:pageBlockTable value="{!Bu}" var="d">
+       <apex:column headerValue=" " value="{!d.Name}"/>
+       <apex:column headerValue="Total"/>
+        <apex:repeat value="{!alldays}" var="f">
+		<apex:column headerValue="{!f}" value="{!f}">
+		</apex:column>
+       </apex:repeat>
+       </apex:pageBlockTable>
+    </apex:form>
+    </apex:pageBlock>
+</apex:page>

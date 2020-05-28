@@ -1,0 +1,19 @@
+<apex:page controller="DynamicTableController">
+    
+    <apex:repeat value="{!dynamicList}" var="tes">
+        <apex:repeat value="{!tString}" var="t"> 
+        {!tes[t]}  <br/>
+        </apex:repeat>
+      
+    </apex:repeat>
+        <apex:form > 
+            <apex:outputPanel id="Rendertest">
+            HI
+            </apex:outputPanel>
+            <apex:outputPanel onclick="renderTest('Manoj')">Click</apex:outputPanel>
+    <apex:actionFunction name="renderTest" action="{!renederingtest}" reRender="Rendertest">
+        <apex:param name="param1" value=""/>
+    </apex:actionFunction>
+        </apex:form>
+        
+</apex:page>

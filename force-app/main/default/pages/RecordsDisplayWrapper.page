@@ -1,0 +1,33 @@
+<apex:page controller="RecordsDoiplayapex">
+    
+    
+
+<apex:form >
+    <apex:pageBlock >
+    
+<apex:pageBlockSection >
+        <apex:pageBlockTable value="{!ContactsList}" var="ab">
+             <apex:column >
+                   <apex:inputCheckbox value="{!ab.selected}" id="inputId" >
+                     <apex:actionSupport event="onclick" reRender="theTabel" action="{!functioncall}" />   
+                       </apex:inputcheckbox> 
+                   </apex:column>
+            <apex:column value="{!ab.ContactRecord.Name}"/>
+           
+        </apex:pageBlockTable>
+            <apex:outputpanel id="blk2" >
+                
+                <apex:pageBlockTable value="{!ConList}" var="a" id="theTabel">
+                    <apex:column value="{!a.Name}"/>
+                     <apex:column headerValue="Email" >
+                         <apex:inputField value="{!a.Email}" rendered="{!IF(a.DoNotCall, true, false)}">
+                              </apex:inputField>
+                    </apex:column>
+                    </apex:pageBlockTable>
+           </apex:outputpanel>    
+            </apex:pageBlockSection>
+             
+    
+        </apex:pageBlock>
+                     </apex:form>
+</apex:page>

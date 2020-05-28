@@ -1,0 +1,136 @@
+<apex:page standardController="Account" standardStylesheets="false" applyBodyTag="false"  showHeader="false" sidebar="false" extensions="AccountExtension">
+  <apex:slds />
+  
+    <apex:form >
+          
+        <div class="slds-scope"> 
+        <apex:pageBlock >
+            
+   <div  class="slds-theme_inverse">
+  <div class="slds-media">
+    <div class="slds-media__figure">
+      <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+        <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#opportunity" />
+        </svg>
+      </span>
+    </div>
+    <div class="slds-media__body">
+        <apex:outputText value="{!Account.Name}"/>
+    </div>
+  </div>
+
+</div>
+       
+                <apex:pageBlockSection title="Account Details" collapsible="false" >
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Website"/>
+                        <apex:outputText value="{!Account.Website}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Account Number"/>
+                        <apex:outputText value="{!Account.AccountNumber}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Number of Employees"/>
+                        <apex:outputText value="{!Account.NumberOfEmployees}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Account Ownership"/>
+                        <apex:outputText value="{!Account.Ownership}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="SIC"/>
+                        <apex:outputText value="{!Account.SIC}" label="SIC"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Annaul Revenue"/>
+                        <apex:outputText value="{!Acc.AnnualRevenue}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Number Of Locations"/>
+                        <apex:outputText value="{!Account.NumberofLocation__c}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Active"/>
+                        <apex:outputText value="{!Account.Active__c}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Industry"/>
+                        <apex:outputText value="{!Account.Industry}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Type"/>
+                        <apex:outputText value="{!Account.Type}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="FAX"/>
+                        <apex:outputText value="{!Account.Fax}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Rating"/>
+                        <apex:outputText value="{!Account.Rating}"/>
+                    </apex:pageBlockSectionItem>
+                    
+                </apex:pageBlockSection>
+                
+               <apex:pageBlockSection collapsible="false" columns="1" >
+                    <div class="slds-align_absolute-center"> Related Contacts </div> 
+                    <apex:pageBlockTable value="{!ContactList}" var="Con" styleClass="slds-table slds-table--bordered slds-table--cell-buffer slds-table_col-bordered">
+                        <apex:column headerValue="Name" value="{!Con.Name}" />
+                        <apex:column headerValue="Email" value="{!Con.Email}"/>
+                        <apex:column headerValue="phone" value="{!Con.phone}"/>
+                        <apex:column headerValue="Fax" value="{!Con.Fax}"/>
+                    </apex:pageBlockTable>
+                   
+                </apex:pageBlockSection>
+                
+           
+                <apex:pageBlockSection collapsible="false" columns="1">
+                    <div class="slds-align_absolute-center"> Related Opportunity</div>
+                    <apex:pageBlockTable value="{!OpptyList}" var="opp" styleClass="slds-table slds-table--bordered slds-table--cell-buffer slds-table_col-bordered">
+                        <apex:column headerValue="Type" value="{!opp.Type}"/>
+                        <apex:column headerValue="Stage" value="{!opp.Stagename}"/>
+                        <apex:column headerValue="Close Date" value="{!opp.CloseDate}"/>
+                        <apex:column headerValue="Amount" value="{!opp.Amount}"/>
+                    </apex:pageBlockTable>
+                    
+                </apex:pageBlockSection> 
+                
+                <apex:pageBlockSection collapsible="false" columns="1">
+                    <div class="slds-align_absolute-center"> Related Cases</div> 
+                    <apex:pageBlockTable value="{!CaseList}" var="Cas" styleClass="slds-table slds-table--bordered slds-table--cell-buffer slds-table_col-bordered">
+                        <apex:column headerValue="Case Number" value="{!Cas.CaseNumber}"/>
+                        <apex:column headerValue="Status" value="{!Cas.Status}"/>
+                        <apex:column headerValue="Priority" value="{!Cas.Priority}"/>
+                        <apex:column headerValue="Case Origin" value="{!Cas.Origin}"/>
+                        <apex:column headerValue="Date Opened" value="{!Cas.CreatedDate}"/>
+                        <apex:column headerValue="Date Closed" value="{!Cas.ClosedDate}"/>
+                        <apex:column headerValue="Subject" value="{!Cas.Subject}"/>
+                    </apex:pageBlockTable>
+                    
+                </apex:pageBlockSection>
+                
+                <br/>
+                <apex:outputPanel layout="block" html-align="Center" styleClass="slds-theme_inverse">
+                       <apex:commandButton value="Edit" styleClass="slds-button slds-button--neutral slds-button_brand" />
+                       <apex:commandButton value="Delete" styleClass="slds-button slds-button--neutral slds-button_destructive" />
+                </apex:outputPanel>
+        
+        </apex:pageBlock>
+        </div>
+    </apex:form>
+    
+</apex:page>

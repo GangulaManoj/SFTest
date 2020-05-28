@@ -1,0 +1,105 @@
+<aura:component implements="force:appHostable" 
+                controller='PaginationController'
+                access="global" >
+    <aura:attribute name="PaginationList" type="Contact[]"/>
+    <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>
+    <aura:attribute name="State" type="boolean"/>
+    <aura:attribute name="SelectedContacts" type="List"/>
+    <aura:attribute name="page" type="integer" description="using for store page Number"/>
+    <aura:attribute name="pages" type="integer" description="using for store All Pages page Number"/>
+    <aura:attribute name="totalRecords" type="Integer" description="total records count store "/>    
+    <aura:attribute name="columns" type="List"/>   
+ 
+    
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
+     <div class="slds-page-header" role="banner">
+            <div class="slds-align_absolute-center">            
+                <lightning:button disabled="{!v.page == 1}" variant="brand" label="Previous Page" onclick="{! c.navigate }" />            
+                <lightning:button disabled="{!v.page == v.pages}" aura:id="previousPage" variant="brand" label="Next Page" onclick="{! c.navigate }" />
+            </div>
+            <p class="slds-page-header__title slds-truncate">{!v.totalRecords} Accounts • page {!v.page} / {!v.pages}</p>
+            <ui:inputSelect aura:id="recordSize" label="Display Record Per Page: " change="{!c.onSelectChange}">
+                <ui:inputSelectOption text="5" label="5" value="true"/>
+                <ui:inputSelectOption text="10" label="10"/>
+                <ui:inputSelectOption text="20" label="20"/>
+            </ui:inputSelect>
+        </div>
+   
+      
+    
+    <div class="slds-page-header">
+        
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" 
+                    title="Pagination Demo">Account Records</h1>
+                
+            </div>
+        </div>
+ <div class="slds-form-element">
+            <label class="slds-form-element__label" for="search"></label>
+            <div class="slds-form-element__control">
+               <ui:inputText aura:id="searchId" class="slds-input" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+            </div>
+         </div>
+         <div class="slds-form-element">
+            <button type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+             <button type="button" onclick="{!c.doInit}" class="slds-button slds-button--brand">ALL Records</button>
+         </div>
+    
+    <div class="slds-m-top_medium" >
+       
+        <!--<lightning:datatable data="{! v.PaginationList }" class="slds-m-top_medium"
+                             columns="{! v.columns }" 
+                             keyField="id"
+                             onrowselection="{! c.getSelectedName }"
+                             />
+                             	-->
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+        <thead>
+          <th>
+               <span class="slds-truncate" title="Name">Contact Name</span>      
+            </th>
+            <th>
+               <span class="slds-truncate" title="Title">Title</span>
+            </th>
+            <th>       
+               <span class="slds-truncate" title="Email">Email</span>
+            </th>
+            <th >
+               <div class="slds-truncate" title="MobilePhone">Mobile Phone</div>
+            </th>
+            <th>
+             <div class="slds-truncate" title="Detail Page">Detail</div>
+            </th>
+            </thead>
+            <tbody>
+            
+             <aura:iteration items="{!v.PaginationList}" var="con">
+                 <tr>
+                  <td scope="row">
+                  <div class="slds-truncate" title="{!con.Name}">
+                      <a href="{!'/one/one.app?#/sObject/'+ con.Id + '/view'}" target="_blank">
+                      {!con.Name}</a></div>
+               </td>
+               <td scope="row">
+                  <div class="slds-truncate" title="{!con.LastName}">{!con.Title}</div>
+               </td>
+               <td scope="row">
+                  <div class="slds-truncate" title="{!con.Department}">{!con.Email}</div>
+               </td>
+               <td scope="row">
+                  <div class="slds-truncate" title="{!con.MobilePhone}">{!con.MobilePhone}</div>
+               </td>
+                 <td scope="row">
+                     <div class="slds-truncate" title="{!con.MobilePhone}">
+                         <!--<apex:outputlink value="#" onclick="window.open('/{!con.Id}','_blank');">click here</apex:outputlink>-->
+                   
+                     </div>
+                     </td>
+                 </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <br/>
+    </div>
+</aura:component>

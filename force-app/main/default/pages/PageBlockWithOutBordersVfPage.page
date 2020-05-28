@@ -1,0 +1,42 @@
+<apex:page controller="PageBlockWithoutBorders">
+    <style>
+   
+        table.list {
+    border-width: 0px !important;
+
+}
+              
+        tr.headerRow th{
+     
+         background-color:#f8f8f8 !important;
+         border-width: 0px !important;
+        border-bttom:0px !important
+        }
+       
+        tr.dataRow td {
+    border-width: 0px !important;
+}
+         
+        tr.dataRow td {
+    border-bottom: 0px !important;
+}
+        
+ 
+    </style>
+ 
+    <apex:pageBlock >
+ <apex:form >            
+
+            <apex:pageBlockTable value="{!Acc}" var="fFile" >
+                <apex:column >
+                <apex:inputCheckbox value="{!selected}" />
+                </apex:column>
+                <apex:column value="{!fFile.id}" headerValue="" />
+                 <apex:column value="{!fFile.name}" headerValue=""/>
+                
+                <apex:column value="{!fFile.NumberOfEmployees}" HeaderValue=""/>
+        </apex:pageBlockTable>
+</apex:form>
+
+    </apex:pageBlock>
+</apex:page>

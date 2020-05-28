@@ -1,0 +1,10 @@
+<aura:component controller="ContactList" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+    <aura:attribute name="Contacts" type="Contact"/>
+    <lightning:card title="Insert Contact">
+     <lightning:inputField fieldName="FirstName" value="Contacts.FirstName"/>
+     <lightning:inputField fieldName="LastName" value="Contacts.LastName"/>
+     <lightning:inputField fieldName="Phone" value="Contacts.Phone"/>
+      <lightning:button variant="base" label="Insert" title="Base action" onclick="{! c.handleClick }"/>
+        </lightning:card>
+</aura:component>

@@ -1,0 +1,50 @@
+<apex:page standardController="Contact" extensions="status">
+
+<apex:form >
+    <apex:pageBlock >
+
+<table>
+
+<tr>
+
+<td>Applicant Name </td>
+
+<td><apex:inputField value="{!Contact.Name}"/></td>
+
+</tr>
+
+<tr>
+
+<td>CV </td>
+
+<td> <apex:inputFile accept="doc, txt, pdf" filename="{!fileName}" contentType="{!contentType}" filesize="1000" size="50" value="{!resume}"/> </td>
+
+</tr>
+    <tr>
+    <apex:pageBlockButtons location="bottom">
+         <apex:actionRegion id="area51">
+    <apex:commandButton id="submitApplicant" value="Submit" action="{!saveApplication}" reRender="someBlock" />
+             </apex:actionRegion>
+    </apex:pageBlockButtons>
+    </tr>
+
+<tr>
+
+
+<apex:outputPanel id="someBlock" rendered="{!show}">
+
+                    <apex:image id="theImage" value="{!'/servlet/servlet.FileDownload?file=' & att.Id}" width="100" height="100"/>      
+
+            </apex:outputPanel>
+
+</tr>
+
+</table>
+
+    </apex:pageBlock>
+
+</apex:form>
+
+    
+
+</apex:page>

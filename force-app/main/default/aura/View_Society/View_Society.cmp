@@ -1,0 +1,35 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="GetSociety" >
+	     <ltng:require styles="{!$Resource.Lightning_slds+'/assets/styles/salesforce-lightning-design-system.css'}"/>
+     <ltng:require styles="{!$Resource.Lightning_slds+'/assets/styles/salesforce-lightning-design-system.min.css'}"/>
+<aura:attribute name="reg" type="Account[]"/>
+<ui:button label="GetSocity" press="{!c.myAction}"/>
+    <ui:button aura:id="NewLead" label="Add_New_Society" class="slds-button slds-button--brand" press="{!c.navigateToNewLead}"/>
+    <div class="slds"> 
+
+    <table class="slds-table slds-table--bordered slds-table--striped">
+        <thead>
+            <tr>
+                <th scope="col"><span class="slds-truncate">Name</span></th>
+                <th scope="col"><span class="slds-truncate">Secretary</span></th>
+                <th scope="col"><span class="slds-truncate">Address</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.reg}" var="acc">
+                <tr>
+                    <td><a href="{!'/one/one.app?#/sObject/'+ acc.Id + '/view'}" target="_blank">{!acc.Name}</a></td>
+     				<td>{!acc.secretary__c}</td>
+                    <td><p>{!acc.BillingStreet}{!acc.BillingCity}</p>
+                        <p>{!acc.BillingState}{!acc.BillingCountry}</p>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+         <div class="slds-float--left">
+       
+</div>
+    </table>
+        
+        </div>
+   
+</aura:component>

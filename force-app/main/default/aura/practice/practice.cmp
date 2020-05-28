@@ -1,0 +1,17 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<div class="slds-truncate slds-border_bottom" >
+  
+  
+   <div class="slds-grid slds-gutters ">
+                    <div class="slds-col slds-size_3-of-12 ">
+                        <span ><b>Subject</b> </span>
+                        
+                    </div>
+                    <div class="slds-col slds-size_9-of-12 ">
+                       <span>2</span>
+                    </div>
+                    
+                </div>
+  
+  </div>
+</aura:component>

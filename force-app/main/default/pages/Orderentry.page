@@ -1,0 +1,108 @@
+<apex:page standardController="Order" extensions="Ordersentry">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+    <apex:pageBlock >
+        <apex:form > 
+             <apex:variable value="{!0}" var="cnt"/> 
+            <apex:actionFunction name="ChangeAccInfo" action="{!autopopaddress}" rerender="saddress,baddress">
+                <apex:param name="aid" assignTo="{!accid}" value=""/>                    
+            </apex:actionFunction>
+            <apex:actionFunction name="ChangeAccInfo1" action="{!autopopDetails}" rerender="FamilyVal">
+                  <apex:param name="pid" assignTo="{!proid}" value=""/>                        
+            </apex:actionFunction>  
+             <apex:pageBlock title="Customer info">  
+             <apex:pageBlockSection >                
+            <apex:inputField id="acc" value="{!Order.Accountid}" onchange="ChangeAccountInfo(this)"/>
+                        <apex:inputField value="{!Order.Customer_Email__c}" />
+                            <apex:inputField value="{!Order.Customer_Phone__c}"/>
+                                <apex:inputField value="{!Order.EffectiveDate}"/>
+               </apex:pageBlockSection>
+               </apex:pageBlock>
+               <apex:pageBlock title="Customer Address">
+               <apex:pageBlockSection > 
+                                    <apex:inputField value="{!Order.Status}"/>
+                                        <apex:inputTextarea id="baddress" value="{!baddress}"/>
+                                            <apex:inputTextarea id="saddress" value="{!saddress}"/>
+                </apex:pageBlockSection>
+                </apex:pageBlock>
+                
+                                                <apex:commandButton value="New OrderLineItem" action="{!NewOrderItem}" reRender="LineItems"/>
+                                                  
+                                                    <apex:pageBlockSection id="LineItems">
+                                                    <apex:pageBlockTable value="{!paginationList}" var="ab">
+                                                        
+                                                        <apex:column headerValue="Product Name">
+                                                            <apex:inputField value="{!ab.oi.Product2Id}" onchange="ChangeAccountInfo1(this)"/>
+                                                            </apex:column>
+                                                            <apex:column headerValue="Product Family">
+                                                                <apex:outputText id="FamilyVal" value="{!FamilyVal}"/>
+                                                                </apex:column>
+                                                                                  <apex:column headerValue="AvailableQuantity">
+                <apex:inputField value="{!ab.oi.AvailableQuantity}"/>
+                 </apex:column> 
+                 <apex:column headerValue="Unit Price">
+                <apex:inputField value="{!ab.oi.UnitPrice}"/>  
+                </apex:column> 
+                 <apex:column headerValue="Quantity">
+                <apex:inputField value="{!ab.oi.Quantity}"/>  
+                </apex:column> 
+                <apex:column headerValue="List Price">
+                <apex:outputField value="{!ab.oi.ListPrice}"/>  
+                </apex:column> 
+                <apex:column headervalue="Action">
+                <apex:commandlink value="Remove" action="{!removeOrderItem}" immediate="true">
+              <!-- Pass the row number to the controller so that we know which row to remove -->
+                <apex:param name="index" value="{!cnt}"/>
+                 </apex:commandlink> 
+                  <apex:variable var="cnt" value="{!cnt+1}"/>
+
+                          
+               </apex:column>
+               <apex:column >
+                   <apex:inputCheckbox value="{!ab.selected}" id="inputId"></apex:inputcheckbox> 
+                   </apex:column>
+                   
+                                                        </apex:pageBLockTable>
+                <apex:commandButton value="Delete OrderLineItem" action="{!DeleteRows}" reRender="LineItems"/>
+                                                  
+              <apex:commandButton value="First" action="{!beginning}" disabled="{!DisablePrevious}" reRender="LineItems"/>
+              <apex:commandButton value="<-Prev" action="{!previous}" disabled="{!DisablePrevious}" reRender="LineItems"/>
+              <apex:commandButton value="Next->" action="{!next}" disabled="{!DisableNext}" reRender="LineItems"/>
+              <apex:commandButton value="Last" action="{!last}" disabled="{!DisableNext}" reRender="LineItems"/>      
+         
+      
+              
+                                                      <!--  
+                                                       <table>
+                                                         
+                                                        <tr>
+                                                       
+                                                       <apex:repeat value="{!OrderLineItem}" var="Item">
+                                                            <apex:inputField value="{!Item.Product2Id}" onchange="ChangeAccountInfo1(this)"/>
+                                                                <apex:outputText id="FamilyVal" value="{!FamilyVal}"/>
+                                                                <apex:inputField value="{!Item.Quantity}"/>
+                                                                    <apex:outputField value="{!Item.UnitPrice}"/>  
+                                                        </apex:repeat>
+                                                       
+                                                          </tr>
+                                                                     
+                                                                    </table>
+                                                                    -->
+                                                                    </apex:pageBlockSection>             
+                                                                    <apex:commandbutton value="Save" action="{!doSave}"/>
+                                                                        </apex:form>
+                                                                    </apex:pageBlock>
+                                                                    <script>
+                                                                        function ChangeAccountInfo(elem){
+                                                                        var aid= document.getElementById(elem.id+'_lkid').value;
+                                                                        alert(aid)
+                                                                        ChangeAccInfo(aid);
+                                                                    }
+                                                                    function ChangeAccountInfo1(elem){
+                                                                        alert('IN function2')
+                                                                        var pid= document.getElementById(elem.id+'_lkid').value;
+                                                                        alert(pid)
+                                                                        ChangeAccInfo1(pid);
+                                                                    }
+   
+    </script>
+</apex:page>

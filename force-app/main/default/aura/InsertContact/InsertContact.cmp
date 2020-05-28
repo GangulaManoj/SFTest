@@ -1,0 +1,25 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="CreateContact" access="global" >
+	<aura:attribute name="ContactDetails" type="Contact" default="{'sobjectType':'Contact',
+                                                                  'Name':'',
+                                                                  'Email':'',
+                                                                  'Age__c':''}"/>
+     <div class="container-fluid,slds-page-header,slds-align_absolute-center">
+         <h3>Please Enter Contact Information</h3>
+         <div class="form-group">
+             <label>Name</label>
+             <ui:inputText class="form-control"  value="{!v.ContactDetails.Name}"/>
+         </div>
+         
+         <div class="form-group">
+         <label>Email</label>
+             <ui:inputText class="form-control" value="{!v.ContactDetails.Email}"/>
+         </div>
+         <div class="form-group">
+         <label>Age</label>
+             <ui:inputText class="form-control" value="{!v.ContactDetails.Age__c}"/>
+         </div>
+    </div>
+     <div class="col-md-4 text-center">
+        <ui:button class="btn btn-default" press="{!c.create}">Create</ui:button>
+  </div>
+</aura:component>
